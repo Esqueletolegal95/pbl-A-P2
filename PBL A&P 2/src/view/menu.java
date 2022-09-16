@@ -10,8 +10,7 @@ public class menu {
 		
 		
 		while(true) {
-			arbitrodao.inserirArbitro();
-			arbitrodao.listarArbitros();
+
 
 		}
 	}

@@ -7,72 +7,59 @@ import java.util.Scanner;
 public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	Scanner input = new Scanner(System.in);
 	List<Arbitro> arbitros = new ArrayList<Arbitro>();
-	protected int idArb = 0;
+	protected int idArb = 100;
 	
 
 	 @Override
-	public void inserirArbitro() {
+	public void inserirArbitro(String nome, int idade, String nacionalidade, String tipoArb) {
 		Arbitro arbitro = new Arbitro();
-
-		System.out.print("Digite o nome do Arbitro:");
-		arbitro.setNome(input.nextLine());
-		System.out.print("Digite a idade do Arbitro:");
-		arbitro.setIdade(input.nextInt());
-		input.nextLine();
-		System.out.print("Digite a nacionalidade do Arbitro:");
-		arbitro.setNacionalidade(input.nextLine());
-		System.out.print("Digite o tipo do Arbitro:");
-		arbitro.setTipoArb(input.nextLine());
+		arbitro.setNome(nome);
+		arbitro.setIdade(idade);
+		arbitro.setNacionalidade(nacionalidade);
+		arbitro.setTipoArb(tipoArb);
 		arbitro.setId(idArb);
 		idArb++;
-		arbitros.add(arbitro);
-		
-		
+		arbitros.add(arbitro);		
 	}
 
+	 
 	@Override
-	public void editarArbitro() {
-		System.out.println("Digite o id do Arbitro a ser alterado.");
-		int id = input.nextInt();
-		input.nextLine();
+	public void editarArbitro(int id, int num, String dado) {
 		for(Arbitro x	: arbitros) {
 			if(x.getId() == id) {
-				System.out.println("Alterando...");
-				System.out.print("Digite o nome do Arbitro:");
-				x.setNome(input.nextLine());
-				System.out.print("Digite a idade do Arbitro:");
-				x.setIdade(input.nextInt());
-				input.nextLine();
-				System.out.print("Digite a nacionalidade do Arbitro:");
-				x.setNacionalidade(input.nextLine());
-				System.out.print("Digite o tipo do Arbitro:");
-				x.setTipoArb(input.nextLine());
-				
+				switch(num) {
+				case(1):{
+					x.setNome(dado);
+					break;}
+				case(2):{
+					x.setIdade(Integer.parseInt(dado));
+					break;}
+				case(3):{
+					x.setNacionalidade(dado);
+					break;}
+				case(4):{
+					x.setTipoArb(dado);
+					break;}
+				default:
+					break;
+				}
 			}
 		}
-		
 	}
 
+	
 	@Override
-	public void excluirArbitro() {
-		System.out.println("Digite o id do Arbitro a ser excluído.");
-		int id = input.nextInt();
-		input.nextLine();
+	public void excluirArbitro(int id) {
 		for(Arbitro x	: arbitros) {
 			if(x.getId() == id) {
 				arbitros.remove(x);
 				}
 			}
-		
-	}
-
-	@Override
-	public void listarArbitros() {
-		for(Arbitro x: arbitros) {
-			System.out.println("|Id:" + x.getId() + "|Nome: " + x.getNome() + "|Idade: " + x.getIdade() + "|Nacionalidade: " + x.getNacionalidade() + "|Tipo: " + x.getTipoArb() + "|");
 		}
-		return;
-		
-	}
 
+	
+	@Override
+	public List<Arbitro> listarArbitros() {		
+		return arbitros;
+	}
 }
