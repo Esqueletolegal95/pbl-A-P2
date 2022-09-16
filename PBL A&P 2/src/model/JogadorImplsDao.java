@@ -4,9 +4,11 @@ import java.util.List;
 
 public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 	protected int idJog= 4000;
+	String[] posicoes = {"Goleiro", "Lateral Direito", "Lateral Esquerdo", "Zagueiro Central", "Quarto Zagueiro",
+"Volante", "Ponta Direita", "Segundo Volante", "Atacante", "Meia Armador" , "Ponta Esquerda"};
 
 	@Override
-	public void inserirJogador(Selecao selecao, String nome, int idade, float altura, boolean titular, String nacio, String posicao) {
+	public void inserirJogador(Selecao selecao, String nome, int idade, float altura, boolean titular, String nacio, int posicao, int camisa) {
 		Jogador jogador = new Jogador();
 		jogador.setNome(nome);
 		jogador.setAltura(altura);
@@ -16,8 +18,9 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 		jogador.setCartaoVermelho(0);
 		jogador.setTitular(titular);
 		jogador.setQuantGols(0);
-		jogador.setPosicao(posicao);
+		jogador.setPosicao(posicoes[posicao]);
 		jogador.setId(idJog);
+		selecao.getJogadores().add(jogador);
 		idJog ++;
 		
 		
@@ -60,13 +63,11 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 				selecao.getJogadores().remove(x);
 			}
 		}
-		
 	}
 
 	@Override
 	public List<Jogador> listarJogador(Selecao selecao) {
 		return selecao.getJogadores();
-		// TODO Auto-generated method stub
 		
 	}
 }

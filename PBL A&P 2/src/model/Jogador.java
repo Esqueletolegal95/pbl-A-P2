@@ -7,6 +7,7 @@ public class Jogador extends Pessoa{
 	private int quantGols;
 	private boolean titular;
 	private float altura;
+	private int camisa;
 	
 	public String getPosicao() {
 		return posicao;
@@ -54,6 +55,14 @@ public class Jogador extends Pessoa{
 	
 	public void setAltura(float altura) {
 		this.altura = altura;
+	}
+
+	public int getCamisa() {
+		return camisa;
+	}
+
+	public void setCamisa(int camisa) {
+		this.camisa = camisa;
 	}
 	
 }

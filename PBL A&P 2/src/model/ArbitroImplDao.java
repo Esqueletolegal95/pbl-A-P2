@@ -7,21 +7,22 @@ import java.util.Scanner;
 public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	Scanner input = new Scanner(System.in);
 	List<Arbitro> arbitros = new ArrayList<Arbitro>();
+	String[] tipos= {"Arbitro Central", "Arbitro Assistente", "Quarto Arbitro"};
 	protected int idArb = 100;
 	
 
 	 @Override
-	public void inserirArbitro(String nome, int idade, String nacionalidade, String tipoArb) {
+	public void inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {
 		Arbitro arbitro = new Arbitro();
 		arbitro.setNome(nome);
 		arbitro.setIdade(idade);
 		arbitro.setNacionalidade(nacionalidade);
-		arbitro.setTipoArb(tipoArb);
+		arbitro.setTipoArb(tipos[tipoArb]);
 		arbitro.setId(idArb);
 		idArb++;
 		arbitros.add(arbitro);		
 	}
-
+	 
 	 
 	@Override
 	public void editarArbitro(int id, int num, String dado) {
@@ -38,7 +39,7 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 					x.setNacionalidade(dado);
 					break;}
 				case(4):{
-					x.setTipoArb(dado);
+					x.setTipoArb(tipos[Integer.parseInt(dado)]);
 					break;}
 				default:
 					break;
@@ -46,7 +47,7 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 			}
 		}
 	}
-
+	
 	
 	@Override
 	public void excluirArbitro(int id) {
@@ -56,7 +57,7 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 				}
 			}
 		}
-
+	
 	
 	@Override
 	public List<Arbitro> listarArbitros() {		

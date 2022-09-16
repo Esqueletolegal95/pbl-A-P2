@@ -1,3 +1,4 @@
+
 package model;
 
 public class Arbitro extends Pessoa {
@@ -6,8 +7,10 @@ public class Arbitro extends Pessoa {
 	public String getTipoArb() {
 		return tipoArb;
 	}
-	public void setTipoArb(String tipoArb) {
-		this.tipoArb = tipoArb;
+	public void setTipoArb(String tipos) {
+		this.tipoArb = tipos;
 	}
 		
 }
+		
+
