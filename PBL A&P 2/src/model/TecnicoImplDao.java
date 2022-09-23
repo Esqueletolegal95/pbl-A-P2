@@ -40,8 +40,6 @@ public class TecnicoImplDao extends PessoaImplDao implements TecnicoDAO {
 			case(4):{
 				selecao.getTecnico().setTimeAnterior(dado);
 				break;}
-			default:
-				break;
 			}
 		}
 
@@ -54,7 +52,9 @@ public class TecnicoImplDao extends PessoaImplDao implements TecnicoDAO {
 	public List<Tecnico> listarTecnico(List<Selecao> selecoes) {
 		List<Tecnico> tecnicos = new ArrayList<Tecnico>();
 		for(Selecao x : selecoes) {
+			if(x.getTecnico() != null) {
 			tecnicos.add(x.getTecnico());
+			}
 		}
 		return tecnicos;
 	}

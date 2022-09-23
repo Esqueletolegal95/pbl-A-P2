@@ -5,24 +5,27 @@ import java.util.List;
 public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 	protected int idJog= 4000;
 	String[] posicoes = {"Goleiro", "Lateral Direito", "Lateral Esquerdo", "Zagueiro Central", "Quarto Zagueiro",
-"Volante", "Ponta Direita", "Segundo Volante", "Atacante", "Meia Armador" , "Ponta Esquerda"};
+"Volante", "Ponta Direita", "Segundo Volante", "Atacante", "Meia Armador" , "Ponta Esquerda", "Ponta Direita"};
 
 	@Override
-	public void inserirJogador(Selecao selecao, String nome, int idade, float altura, boolean titular, String nacio, int posicao, int camisa) {
-		Jogador jogador = new Jogador();
-		jogador.setNome(nome);
-		jogador.setAltura(altura);
-		jogador.setIdade(idade);
-		jogador.setNacionalidade(nacio);
-		jogador.setCartaoAmarelo(0);
-		jogador.setCartaoVermelho(0);
-		jogador.setTitular(titular);
-		jogador.setQuantGols(0);
-		jogador.setPosicao(posicoes[posicao]);
-		jogador.setId(idJog);
-		selecao.getJogadores().add(jogador);
-		idJog ++;
-		
+	public void inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) {
+		if(selecao.getJogadores().size() >= 26)
+			System.out.println("A selecao está cheia");
+			else {
+				Jogador jogador = new Jogador();
+				jogador.setNome(nome);
+				jogador.setAltura(altura);
+				jogador.setIdade(idade);
+				jogador.setNacionalidade(nacio);
+				jogador.setCartaoAmarelo(0);
+				jogador.setCartaoVermelho(0);
+				jogador.setTitular(titular);
+				jogador.setQuantGols(0);
+				jogador.setPosicao(posicoes[posicao]);
+				jogador.setId(idJog);
+				selecao.getJogadores().add(jogador);
+				idJog ++;
+			}
 		
 	}
 
@@ -33,28 +36,38 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 				switch(num) {
 				case(1):
 					x.setNome(dado);
+				break;
 				case(2):
-					x.setAltura(Integer.parseInt(dado));
+					x.setAltura(Double.parseDouble(dado));
+				break;
 				case(3):
 					x.setIdade(Integer.parseInt(dado));
+				break;
 				case(4):
 					x.setNacionalidade(dado);
+				break;
 				case(5):
 					x.setCartaoAmarelo(Integer.parseInt(dado));
+				break;
 				case(6):
 					x.setCartaoVermelho(Integer.parseInt(dado));
+				break;
 				case(7):
+					x.setQuantGols(Integer.parseInt(dado));
+				case(8):
 					if (dado == "s") 
 						x.setTitular(true);
 					else
 						x.setTitular(false);
-				case(8):
-					x.setPosicao(dado);
+				break;
+				case(9):
+					x.setPosicao(posicoes[Integer.parseInt(dado)]);
+				break;
 				}
 			}
 		}
-		
-	}
+	}	
+
 
 	@Override
 	public void excluirJogador(Selecao selecao, int id) {

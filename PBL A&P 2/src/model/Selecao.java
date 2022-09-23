@@ -1,9 +1,10 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Selecao extends Entidade{
-	private List<Jogador> jogadores;
+	private List<Jogador> jogadores= new ArrayList<Jogador>();;
 	private Tecnico tecnico;
 	private String grupo;
 	private int posicaoGrupo;

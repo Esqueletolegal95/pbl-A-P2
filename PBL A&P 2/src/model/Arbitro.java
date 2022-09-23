@@ -10,6 +10,7 @@ public class Arbitro extends Pessoa {
 	public void setTipoArb(String tipos) {
 		this.tipoArb = tipos;
 	}
+
 		
 }
 		

@@ -7,5 +7,6 @@ public interface SelecaoDAO extends EntidadeDAO{
 	abstract void editarSelecao(int id,int num, String dado);
 	abstract void excluirSelecao(int id);
 	abstract List<Selecao> listarSelecao();
+	abstract Selecao retornaSelecao(int id);
 
 }
