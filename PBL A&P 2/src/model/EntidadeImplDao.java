@@ -9,7 +9,7 @@ public class EntidadeImplDao implements EntidadeDAO {
 	@Override
 	public int gerarId(int id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return id++;
 	}
 
 

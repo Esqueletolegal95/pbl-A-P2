@@ -1,3 +1,14 @@
+/*******************************************************************************
+Autor: Pedro Henrique/ Tiago Moura
+Componente Curricular: MI Programação 
+Concluido em: 25/09/2022
+Declaro que este código foi elaborado por mim de forma individual e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************/
+
 package view;
 
 import java.util.Scanner;
@@ -18,20 +29,22 @@ public class menu {
 		SelecaoDAO selecaodao = new SelecaoImplDao();
 		TecnicoDAO tecnicodao = new TecnicoImplDao();
 		
-		selecaodao.inserirSelecao("A", "selecaoProxy", 1);
+		selecaodao.inserirSelecao("A", "selecaoProxy", 1); //iniciando algums objetos
 		for(int x = 0; x<26;x++) {
 			jogadordao.inserirJogador(selecaodao.listarSelecao().get(0), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
 		}
-		tecnicodao.inserirTecnico(selecaodao.listarSelecao().get(0), "Tecnico", 13, "nacionalidade", "vascão");
+		tecnicodao.inserirTecnico(selecaodao.listarSelecao().get(0), "Tecnico", 13, "nacionalidade", "vascao");
 		
 		selecaodao.inserirSelecao("B", "selecaoProxy", 1);
 		for(int x = 0; x<26;x++) {
 			jogadordao.inserirJogador(selecaodao.listarSelecao().get(1), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
 		}
-		tecnicodao.inserirTecnico(selecaodao.listarSelecao().get(1), "Tecnico", 13, "nacionalidade", "vasca	o");
+		tecnicodao.inserirTecnico(selecaodao.listarSelecao().get(1), "Tecnico", 13, "nacionalidade", "vascao");
+		arbitrodao.inserirArbitro("nome", 12, "alguma ai", 1);
+		arbitrodao.inserirArbitro("nome", 12, "alguma ai", 2);
 		
 		
-		while(true){
+		while(true){// menu
 			System.out.println("Escolha uma das opcoes:\n1 - Arbitro\n2 - Selecao\n3 - Jogador\n4 - Tecnico");
 			opcao = Integer.parseInt(input.nextLine());
 			switch(opcao) {
@@ -165,8 +178,8 @@ public class menu {
 						case(2):{
 							System.out.println("Digite o id da selecao a qual serao listadas seus jogadores: ");
 							id = Integer.parseInt(input.nextLine()); 
-							for (Jogador x:jogadordao.listarJogador(selecaodao.retornaSelecao(id))) {
-								System.out.println("|Id: " +x.getId()+"|Nome: "+x.getNome()+"|Idade: "+x.getIdade()+"|Nacionalidade: "+x.getAltura()+"|Altura: "+ x.getAltura()+"|Titular: "+x.isTitular()+"|Posicao: "+ x.getPosicao()+"|Quantidade de gols: "+x.getQuantGols()+"|Cartao amarelo: "+x.getCartaoAmarelo()+"|Cartao vermelho: "+x.getCartaoVermelho()+"|Numero da camisa: " +x.getCamisa());
+							for (Jogador x:selecaodao.retornaSelecao(id).getJogadores()) {
+								System.out.println("|Id: " +x.getId()+"|Nome: "+x.getNome()+"|Idade: "+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Altura: "+ x.getAltura()+"|Titular: "+x.isTitular()+"|Posicao: "+ x.getPosicao()+"|Quantidade de gols: "+x.getQuantGols()+"|Cartao amarelo: "+x.getCartaoAmarelo()+"|Cartao vermelho: "+x.getCartaoVermelho()+"|Numero da camisa: " +x.getCamisa());
 							}
 							break;
 								}
@@ -229,11 +242,13 @@ public class menu {
 							
 						}
 						case(2):{
-							tecnicodao.listarTecnico(selecaodao.listarSelecao());
+							for(Tecnico x :tecnicodao.listarTecnico(selecaodao.listarSelecao())) {
+								System.out.println("|Nome: "+x.getNome()+"|Idade"+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Time anterior: "+x.getTimeAnterior());
+							}
 							break;
 						}
 						case(3):{
-							System.out.println("Digite a selecao a qual o tecnico pertence");
+							System.out.println("Digite o id selecao a qual o tecnico pertence: ");
 							id = Integer.parseInt(input.nextLine());
 							System.out.println("Digite qual opcao voce deseja:\n1 - nome\n2 - Idade\n3 - Nacionalidade\n4 - Time Anterior");
 							opcao = Integer.parseInt(input.nextLine());

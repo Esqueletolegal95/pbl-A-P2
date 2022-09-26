@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	Scanner input = new Scanner(System.in);
-	List<Arbitro> arbitros = new ArrayList<Arbitro>();
-	String[] tipos= {"Arbitro Central", "Arbitro Assistente", "Quarto Arbitro"};
-	protected int idArb = 100;
+	List<Arbitro> arbitros = new ArrayList<Arbitro>();//Lista como base de dados
+	String[] tipos= {"Arbitro Central", "Arbitro Assistente", "Quarto Arbitro"};//Tipos de arbitros
+	protected int idArb = 10000;
 	
 
 	 @Override
-	public void inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {
+	public void inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {//Insere Arbitro na lista
 		Arbitro arbitro = new Arbitro();
 		arbitro.setNome(nome);
 		arbitro.setIdade(idade);
@@ -25,7 +25,7 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	 
 	 
 	@Override
-	public void editarArbitro(int id, int num, String dado) {
+	public void editarArbitro(int id, int num, String dado) {//Edita Arbitro na lista
 		for(Arbitro x	: arbitros) {
 			if(x.getId() == id) {
 				switch(num) {
@@ -50,7 +50,7 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	
 	
 	@Override
-	public void excluirArbitro(int id) {
+	public void excluirArbitro(int id) {//Exclui Arbitro na lista
 		for(Arbitro x	: arbitros) {
 			if(x.getId() == id) {
 				arbitros.remove(x);
@@ -60,7 +60,7 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	
 	
 	@Override
-	public List<Arbitro> listarArbitros() {		
+	public List<Arbitro> listarArbitros() {	//Retorna todos os arbitros
 		return arbitros;
 	}
 }

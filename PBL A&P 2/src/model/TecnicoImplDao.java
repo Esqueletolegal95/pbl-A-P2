@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class TecnicoImplDao extends PessoaImplDao implements TecnicoDAO {
-	int idTec = 200;
+	int idTec = 20000;
 	Scanner input = new Scanner(System.in);
 
 

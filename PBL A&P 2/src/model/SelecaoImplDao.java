@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
-	List<Selecao> selecoes = new ArrayList<Selecao>();;
-	protected int idSelec = 300;
+	List<Selecao> selecoes = new ArrayList<Selecao>();//Lista como base de dados
+	protected int idSelec = 40000;
 	
 
 	@Override
-	public void inserirSelecao(String grupo, String nome, int posicaoGrupo) {
+	public void inserirSelecao(String grupo, String nome, int posicaoGrupo) {//Insere seleção na lista
 		if (selecoes.size() >=32)
 			System.out.println("A lista de selecoes está cheia (32 selecoes)");
 		else {
@@ -24,7 +24,7 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	}
 
 	@Override
-	public void editarSelecao(int id,int num, String dado) {	
+	public void editarSelecao(int id,int num, String dado) {//Edita seleção na lista
 		for(Selecao x : selecoes) {
 			switch(num) {
 				case(1):
@@ -43,7 +43,7 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	}
 
 	@Override
-	public void excluirSelecao(int id) {
+	public void excluirSelecao(int id) {//Exclui seleção na lista
 		for(Selecao x : selecoes) {
 			if (x.getId() == id)
 				selecoes.remove(x);
@@ -52,13 +52,13 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	}
 
 	@Override
-	public List<Selecao> listarSelecao() {
+	public List<Selecao> listarSelecao() {//Retorna todas as seleções da lista
 		return selecoes;
 		
 	}
 
 	@Override
-	public Selecao retornaSelecao(int id) {
+	public Selecao retornaSelecao(int id) {//Retorna a selecao escolhida
 		for(Selecao x : selecoes) {
 			if (x.getId() == id)
 				return x;

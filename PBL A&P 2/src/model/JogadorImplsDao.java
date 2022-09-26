@@ -1,15 +1,14 @@
 package model;
 
-import java.util.List;
 
-public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
-	protected int idJog= 4000;
+public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
+	protected int idJog= 30000; //Valor será incrementado para gerar o id
 	String[] posicoes = {"Goleiro", "Lateral Direito", "Lateral Esquerdo", "Zagueiro Central", "Quarto Zagueiro",
-"Volante", "Ponta Direita", "Segundo Volante", "Atacante", "Meia Armador" , "Ponta Esquerda", "Ponta Direita"};
+"Volante", "Ponta Direita", "Segundo Volante", "Atacante", "Meia Armador" , "Ponta Esquerda", "Ponta Direita"}; //Lista com as posicoes que poderão ser escolhidas
 
 	@Override
-	public void inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) {
-		if(selecao.getJogadores().size() >= 26)
+	public void inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) { //Insere o jogador no atributo de Selecao
+		if(selecao.getJogadores().size() > 26) //Garante que a selecao não terá mais que 26 jogadores
 			System.out.println("A selecao está cheia");
 			else {
 				Jogador jogador = new Jogador();
@@ -30,7 +29,7 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 	}
 
 	@Override
-	public void editarJogador(Selecao selecao, int id, int num, String dado) {
+	public void editarJogador(Selecao selecao, int id, int num, String dado) {//Edita o jogador no atributo de Selecao
 		for(Jogador x: selecao.getJogadores()) {
 			if (x.getId()==id) {
 				switch(num) {
@@ -70,7 +69,7 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 
 
 	@Override
-	public void excluirJogador(Selecao selecao, int id) {
+	public void excluirJogador(Selecao selecao, int id) {//Exclui o jogador no atributo de Selecao
 		for(Jogador x: selecao.getJogadores()) {
 			if(x.getId()==id) {
 				selecao.getJogadores().remove(x);
@@ -78,9 +77,4 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao{
 		}
 	}
 
-	@Override
-	public List<Jogador> listarJogador(Selecao selecao) {
-		return selecao.getJogadores();
-		
-	}
 }
