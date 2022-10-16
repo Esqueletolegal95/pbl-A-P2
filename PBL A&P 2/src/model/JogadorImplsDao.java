@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 
 public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 	protected int idJog= 30000; //Valor será incrementado para gerar o id
@@ -7,8 +8,8 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 "Volante", "Ponta Direita", "Segundo Volante", "Atacante", "Meia Armador" , "Ponta Esquerda", "Ponta Direita"}; //Lista com as posicoes que poderão ser escolhidas
 
 	@Override
-	public void inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) { //Insere o jogador no atributo de Selecao
-		if(selecao.getJogadores().size() > 26) //Garante que a selecao não terá mais que 26 jogadores
+	public Jogador inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) { //Insere o jogador no atributo de Selecao
+		if(selecao.getJogadores().size() >= 26) //Garante que a selecao não terá mais que 26 jogadores
 			System.out.println("A selecao está cheia");
 			else {
 				Jogador jogador = new Jogador();
@@ -24,8 +25,9 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 				jogador.setId(idJog);
 				selecao.getJogadores().add(jogador);
 				idJog ++;
+				return jogador;
 			}
-		
+		return null;
 	}
 
 	@Override
@@ -62,6 +64,8 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 				case(9):
 					x.setPosicao(posicoes[Integer.parseInt(dado)]);
 				break;
+				case(10):
+					x.setCamisa(Integer.parseInt(dado));
 				}
 			}
 		}
@@ -69,12 +73,24 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 
 
 	@Override
-	public void excluirJogador(Selecao selecao, int id) {//Exclui o jogador no atributo de Selecao
-		for(Jogador x: selecao.getJogadores()) {
-			if(x.getId()==id) {
-				selecao.getJogadores().remove(x);
+	public Jogador excluirJogador(Selecao selecao, int id) {
+		for(Jogador jogador: selecao.getJogadores()) {
+			if(jogador.getId()==id) {
+				selecao.getJogadores().remove(jogador);
+				return jogador;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public Jogador retornaJogador(Selecao selecao, int id) {
+		for(Jogador jogador: selecao.getJogadores()) {
+			if(jogador.getId()==id) {
+				return jogador;
+			}
+		}
+		return null;
 	}
 
 }

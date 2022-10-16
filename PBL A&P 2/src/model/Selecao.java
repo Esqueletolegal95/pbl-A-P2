@@ -9,7 +9,8 @@ public class Selecao extends Entidade{
 	private String grupo;
 	private int posicaoGrupo;
 	
-	public Selecao() {
+	public Selecao(String nome) {
+		this.setNome(nome);
 	}
 	
 	public String getGrupo() {
@@ -44,5 +45,6 @@ public class Selecao extends Entidade{
 	public void setJogadores(List<Jogador> jogadores) {
 		this.jogadores = jogadores;
 	}
+	
 	
 }

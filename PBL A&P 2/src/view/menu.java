@@ -12,40 +12,45 @@ do código, e estou ciente que estes trechos não serão considerados para fins 
 package view;
 
 import java.util.Scanner;
-
-
 import model.*;
+import controller.*;
+
 
 public class menu {
 	
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		double altura;
 		Scanner input = new Scanner(System.in);
 		String nome, nacionalidade, dado, grupo,time;
-		int idade, opcao, tipo, id, posGrupo, posicao, camisa;
-		boolean titular;
-		ArbitroDAO arbitrodao = new ArbitroImplDao();
-		JogadorDao jogadordao = new JogadorImplsDao();
-		SelecaoDAO selecaodao = new SelecaoImplDao();
-		TecnicoDAO tecnicodao = new TecnicoImplDao();
+		int idade, opcao, tipo, id, posGrupo, posicao, camisa, auxiliar;
+		boolean titular, menu;
+
+		menu = true;
+		ArbitroController arbitrocontroller = new ArbitroController();
+		JogadorController jogadorcontroller = new JogadorController();
+		SelecaoController selecaocontroller = new SelecaoController();
+		TecnicoController tecnicocontroller = new TecnicoController();
 		
-		selecaodao.inserirSelecao("A", "selecaoProxy", 1); //iniciando algums objetos
+		
+		
+		selecaocontroller.inserirSelecao("A", "selecaoProxy", 1); //iniciando algums objetos
 		for(int x = 0; x<26;x++) {
-			jogadordao.inserirJogador(selecaodao.listarSelecao().get(0), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
+			jogadorcontroller.inserirJogador(selecaocontroller.listarSelecao().get(0), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
 		}
-		tecnicodao.inserirTecnico(selecaodao.listarSelecao().get(0), "Tecnico", 13, "nacionalidade", "vascao");
+		tecnicocontroller.inserirTecnico(selecaocontroller.listarSelecao().get(0), "Tecnico", 13, "nacionalidade", "vascao");
 		
-		selecaodao.inserirSelecao("B", "selecaoProxy", 1);
+		selecaocontroller.inserirSelecao("B", "selecaoProxy", 1);
 		for(int x = 0; x<26;x++) {
-			jogadordao.inserirJogador(selecaodao.listarSelecao().get(1), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
+			jogadorcontroller.inserirJogador(selecaocontroller.listarSelecao().get(1), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
 		}
-		tecnicodao.inserirTecnico(selecaodao.listarSelecao().get(1), "Tecnico", 13, "nacionalidade", "vascao");
-		arbitrodao.inserirArbitro("nome", 12, "alguma ai", 1);
-		arbitrodao.inserirArbitro("nome", 12, "alguma ai", 2);
+		tecnicocontroller.inserirTecnico(selecaocontroller.listarSelecao().get(1), "Tecnico", 13, "nacionalidade", "vascao");
+		arbitrocontroller.inserirArbitro("nome", 12, "alguma ai", 1);
+		arbitrocontroller.inserirArbitro("nome", 12, "alguma ai", 2);
 		
 		
-		while(true){// menu
-			System.out.println("Escolha uma das opcoes:\n1 - Arbitro\n2 - Selecao\n3 - Jogador\n4 - Tecnico");
+		while(menu){// menu
+			System.out.println("Escolha uma das opcoes:\n1 - Arbitro\n2 - Selecao\n3 - Jogador\n4 - Tecnico\n5 - Sair");
 			opcao = Integer.parseInt(input.nextLine());
 			switch(opcao) {
 			case(1):{
@@ -61,12 +66,12 @@ public class menu {
 							nacionalidade = input.nextLine();
 							System.out.println("Escolha o tipo de arbitro:\n0 - Arbitro Central \n1 - Arbitro Assistente \n2 - Quarto Arbitro:");
 							tipo = Integer.parseInt(input.nextLine());
-							arbitrodao.inserirArbitro(nome, idade, nacionalidade, tipo);
+							arbitrocontroller.inserirArbitro(nome, idade, nacionalidade, tipo);
 							break;
 							}
 						
 						case(2):{
-							for(Arbitro x: arbitrodao.listarArbitros()) {
+							for(Arbitro x: arbitrocontroller.listarArbitros()) {
 								System.out.println("|Id: " + x.getId() + "|Nome: " + x.getNome() + "|Idade: " + x.getIdade()+ "|Nacionalidade: " + x.getNacionalidade()+ "|Tipo: " + x.getTipoArb() + "|");
 								}
 							break;	
@@ -75,7 +80,7 @@ public class menu {
 						case (3):{
 							System.out.println("Digite o id do Arbitro a ser editado:");
 							id = Integer.parseInt(input.nextLine());
-							for(Arbitro x: arbitrodao.listarArbitros()) {
+							for(Arbitro x: arbitrocontroller.listarArbitros()) {
 								if (x.getId()==id) {
 								System.out.println("Escolha o que deseja editar:\n1 - Nome\n2 - Idade\n3 - Nacionalidade\n4 - Tipo de arbitro");
 								opcao = Integer.parseInt(input.nextLine());
@@ -84,7 +89,7 @@ public class menu {
 									System.out.println("Escolha o tipo de arbitro:\n0 - Arbitro Central \n1 - Arbitro Assistente \n2 - Quarto Arbitro:");
 									}
 								dado = input.nextLine();
-								arbitrodao.editarArbitro(id, opcao, dado);
+								arbitrocontroller.editarArbitro(id, opcao, dado);
 								}
 								}
 							break;
@@ -93,16 +98,13 @@ public class menu {
 						case(4):{
 							System.out.println("Digite o id do Arbitro a ser excluido:");
 							id = Integer.parseInt(input.nextLine());
-							for(Arbitro x: arbitrodao.listarArbitros()) {
-								if(id == x.getId()) {
-									arbitrodao.listarArbitros().remove(x);
-								}
+								arbitrocontroller.excluirArbitro(id);
 							}
 							break;
 						}
 					}	
 					break;
-				}
+				
 			
 			case(2):{
 				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir");
@@ -115,11 +117,11 @@ public class menu {
 							grupo = input.nextLine();
 							System.out.println("Digite a posição da eleição no grupo:");
 							posGrupo = Integer.parseInt(input.nextLine());
-							selecaodao.inserirSelecao(grupo, nome, posGrupo);
+							selecaocontroller.inserirSelecao(grupo, nome, posGrupo);
 							break;
 						}
 						case(2):{
-							for(Selecao x: selecaodao.listarSelecao()) {
+							for(Selecao x: selecaocontroller.listarSelecao()) {
 								if(x.getTecnico() == null)
 									System.out.println("|Id: "+x.getId()+"|Nome: "+x.getNome()+"|Grupo: "+x.getGrupo()+"|Pocisao no Grupo: "+x.getPosicaoGrupo()+"|Tecnico: Sem Tecnico|");
 								else
@@ -135,13 +137,13 @@ public class menu {
 							opcao = Integer.parseInt(input.nextLine());
 							System.out.println("Digite o dado a ser alterado:");
 							dado = input.nextLine();
-							selecaodao.editarSelecao(id, opcao, dado);
+							selecaocontroller.editarSelecao(id, opcao, dado);
 							break;
 						}
 						case(4):{
 							System.out.println("Digite o id da Selecao a ser excluído: ");
 							id = Integer.parseInt(input.nextLine());
-							selecaodao.excluirSelecao(id);
+							selecaocontroller.excluirSelecao(id);
 							break;
 						}
 					}
@@ -172,13 +174,13 @@ public class menu {
 							posicao = Integer.parseInt(input.nextLine());
 							System.out.println("Digite o numero da camisa: ");
 							camisa = Integer.parseInt(input.nextLine());
-							jogadordao.inserirJogador(selecaodao.retornaSelecao(id), nome, idade, altura, titular, nacionalidade, posicao, camisa);
+							jogadorcontroller.inserirJogador(selecaocontroller.retornaSelecao(id), nome, idade, altura, titular, nacionalidade, posicao, camisa);
 							break;
 						}
 						case(2):{
 							System.out.println("Digite o id da selecao a qual serao listadas seus jogadores: ");
 							id = Integer.parseInt(input.nextLine()); 
-							for (Jogador x:selecaodao.retornaSelecao(id).getJogadores()) {
+							for (Jogador x:selecaocontroller.listarJogador(id)) {
 								System.out.println("|Id: " +x.getId()+"|Nome: "+x.getNome()+"|Idade: "+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Altura: "+ x.getAltura()+"|Titular: "+x.isTitular()+"|Posicao: "+ x.getPosicao()+"|Quantidade de gols: "+x.getQuantGols()+"|Cartao amarelo: "+x.getCartaoAmarelo()+"|Cartao vermelho: "+x.getCartaoVermelho()+"|Numero da camisa: " +x.getCamisa());
 							}
 							break;
@@ -186,10 +188,10 @@ public class menu {
 						case(3):{
 							System.out.println("Digite o id do jogador a ser alterado: ");
 							id = Integer.parseInt(input.nextLine());
-							for(Selecao x: selecaodao.listarSelecao()) {
+							for(Selecao x: selecaocontroller.listarSelecao()) {
 								for(Jogador y: x.getJogadores()) {
 									if(y.getId()==id) {
-										System.out.println("Escolha o que deseja editar:\n1 - Nome\n2 - Altura\n3 - Idade\n4 - Nacionalidade\n5 - Cartao Amarelo\n6 - Cartao Vermelho\n7 - Qauntidade de gols\n8 - Titular\n9 - Posicao");
+										System.out.println("Escolha o que deseja editar:\n1 - Nome\n2 - Altura\n3 - Idade\n4 - Nacionalidade\n5 - Cartao Amarelo\n6 - Cartao Vermelho\n7 - Qauntidade de gols\n8 - Titular\n9 - Posicao\n10 - Nº da camisa\n");
 										opcao = Integer.parseInt(input.nextLine());
 										if(opcao == 9) {
 											System.out.println("Escolha a posicao:\n0 - Goleiro \n1 - Lateral Direito \n2 - Lateral Esquerdo\n3 - Zagueiro Central\n4 - Quarto Zagueiro\n5 - Volante \n6 - Ponta Direita \n7 - Segundo Volante \n8 - Atacante \n9 -Meia Armador \n10 - Ponta Esquerda\n11 - Ponta Direita");
@@ -198,7 +200,7 @@ public class menu {
 											System.out.println("O jogador é titular: (Digite s se sim)");
 										}
 										dado = input.nextLine();
-										jogadordao.editarJogador(x, id, opcao, dado);
+										jogadorcontroller.editarJogador(x, id, opcao, dado);
 										break;
 									}
 									
@@ -207,15 +209,11 @@ public class menu {
 							break;
 						}
 						case(4):{
+							System.out.println("Digite o id da selecao que sera excluido o jogador");
+							auxiliar = Integer.parseInt(input.nextLine());
 							System.out.println("Digite o id do jogador a ser excluido: ");
 							id = Integer.parseInt(input.nextLine());
-							for(Selecao x: selecaodao.listarSelecao()){
-								for(Jogador y: x.getJogadores()) {
-									if(y.getId()==id) {
-										x.getJogadores().remove(y);
-									}
-								}
-							}
+							selecaocontroller.excluirJogador(auxiliar, id);
 							break;
 						}
 					}
@@ -237,35 +235,37 @@ public class menu {
 							nacionalidade = input.nextLine();
 							System.out.println("Digite o nome do time anterior do tecnico: ");
 							time = input.nextLine();
-							tecnicodao.inserirTecnico(selecaodao.retornaSelecao(id), nome, idade, nacionalidade, time);
+							tecnicocontroller.inserirTecnico(selecaocontroller.retornaSelecao(id), nome, idade, nacionalidade, time);
 							break;
 							
 						}
 						case(2):{
-							for(Tecnico x :tecnicodao.listarTecnico(selecaodao.listarSelecao())) {
-								System.out.println("|Nome: "+x.getNome()+"|Idade"+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Time anterior: "+x.getTimeAnterior());
+							for(Tecnico x :tecnicocontroller.listarTecnico(selecaocontroller.listarSelecao())) {
+								System.out.println("|Nome: "+x.getNome()+"|Idade: "+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Time anterior: "+x.getTimeAnterior());
 							}
 							break;
 						}
 						case(3):{
 							System.out.println("Digite o id selecao a qual o tecnico pertence: ");
 							id = Integer.parseInt(input.nextLine());
-							System.out.println("Digite qual opcao voce deseja:\n1 - nome\n2 - Idade\n3 - Nacionalidade\n4 - Time Anterior");
+							System.out.println("Digite qual opcao voce deseja:\n1 - nome\n2 - Idade: \n3 - Nacionalidade\n4 - Time Anterior");
 							opcao = Integer.parseInt(input.nextLine());
 							dado = input.nextLine();
-							tecnicodao.editarTecnico(selecaodao.retornaSelecao(id), opcao, dado);
+							tecnicocontroller.editarTecnico(selecaocontroller.retornaSelecao(id), opcao, dado);
 							break;
 						}
 						case(4):{
 							System.out.println("Digite o id da selecao onde sera excluido o tecnico: ");
 							id = Integer.parseInt(input.nextLine());
-							tecnicodao.excluirTecnico(selecaodao.retornaSelecao(id));
+							tecnicocontroller.excluirTecnico(selecaocontroller.retornaSelecao(id));
 							break;
 						}
 						
 					}
 				break;
 				}
+			case(5):
+				menu = false;
 			}
 		}
 	}

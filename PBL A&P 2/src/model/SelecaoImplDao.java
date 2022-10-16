@@ -9,18 +9,20 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	
 
 	@Override
-	public void inserirSelecao(String grupo, String nome, int posicaoGrupo) {//Insere seleção na lista
+	public Selecao inserirSelecao(String grupo, String nome, int posicaoGrupo) {//Insere seleção na lista
 		if (selecoes.size() >=32)
 			System.out.println("A lista de selecoes está cheia (32 selecoes)");
 		else {
-		Selecao selecao = new Selecao();
+		Selecao selecao = new Selecao("");
 		selecao.setGrupo(grupo);
 		selecao.setNome(nome);
 		selecao.setPosicaoGrupo(posicaoGrupo);
 		selecoes.add(selecao);
 		selecao.setId(idSelec);
 		idSelec++;
+		return selecao;
 		}
+		return null;
 	}
 
 	@Override
