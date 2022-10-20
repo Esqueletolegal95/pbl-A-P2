@@ -31,23 +31,9 @@ public class menu {
 		JogadorController jogadorcontroller = new JogadorController();
 		SelecaoController selecaocontroller = new SelecaoController();
 		TecnicoController tecnicocontroller = new TecnicoController();
+	
 		
-		
-		
-		selecaocontroller.inserirSelecao("A", "selecaoProxy", 1); //iniciando algums objetos
-		for(int x = 0; x<26;x++) {
-			jogadorcontroller.inserirJogador(selecaocontroller.listarSelecao().get(0), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
-		}
-		tecnicocontroller.inserirTecnico(selecaocontroller.listarSelecao().get(0), "Tecnico", 13, "nacionalidade", "vascao");
-		
-		selecaocontroller.inserirSelecao("B", "selecaoProxy", 1);
-		for(int x = 0; x<26;x++) {
-			jogadorcontroller.inserirJogador(selecaocontroller.listarSelecao().get(1), "Placeholder", 16, 1.78,false, "Brasileiro", 5, 10);;
-		}
-		tecnicocontroller.inserirTecnico(selecaocontroller.listarSelecao().get(1), "Tecnico", 13, "nacionalidade", "vascao");
-		arbitrocontroller.inserirArbitro("nome", 12, "alguma ai", 1);
-		arbitrocontroller.inserirArbitro("nome", 12, "alguma ai", 2);
-		
+
 		
 		while(menu){// menu
 			System.out.println("Escolha uma das opcoes:\n1 - Arbitro\n2 - Selecao\n3 - Jogador\n4 - Tecnico\n5 - Sair");
@@ -71,27 +57,22 @@ public class menu {
 							}
 						
 						case(2):{
-							for(Arbitro x: arbitrocontroller.listarArbitros()) {
-								System.out.println("|Id: " + x.getId() + "|Nome: " + x.getNome() + "|Idade: " + x.getIdade()+ "|Nacionalidade: " + x.getNacionalidade()+ "|Tipo: " + x.getTipoArb() + "|");
-								}
+							System.out.println(arbitrocontroller.listarArbitros());
 							break;	
 						}
 						
 						case (3):{
 							System.out.println("Digite o id do Arbitro a ser editado:");
 							id = Integer.parseInt(input.nextLine());
-							for(Arbitro x: arbitrocontroller.listarArbitros()) {
-								if (x.getId()==id) {
-								System.out.println("Escolha o que deseja editar:\n1 - Nome\n2 - Idade\n3 - Nacionalidade\n4 - Tipo de arbitro");
-								opcao = Integer.parseInt(input.nextLine());
-								System.out.println("Digite o dado a ser alterado:");
-								if(opcao == 4) {
-									System.out.println("Escolha o tipo de arbitro:\n0 - Arbitro Central \n1 - Arbitro Assistente \n2 - Quarto Arbitro:");
-									}
-								dado = input.nextLine();
-								arbitrocontroller.editarArbitro(id, opcao, dado);
+							System.out.println("Escolha o que deseja editar:\n1 - Nome\n2 - Idade\n3 - Nacionalidade\n4 - Tipo de arbitro");
+							opcao = Integer.parseInt(input.nextLine());
+							System.out.println("Digite o dado a ser alterado:");
+							if(opcao == 4) {
+								System.out.println("Escolha o tipo de arbitro:\n0 - Arbitro Central \n1 - Arbitro Assistente \n2 - Quarto Arbitro:");
 								}
-								}
+							dado = input.nextLine();
+							arbitrocontroller.editarArbitro(id, opcao, dado);
+								
 							break;
 						}
 						
@@ -121,13 +102,7 @@ public class menu {
 							break;
 						}
 						case(2):{
-							for(Selecao x: selecaocontroller.listarSelecao()) {
-								if(x.getTecnico() == null)
-									System.out.println("|Id: "+x.getId()+"|Nome: "+x.getNome()+"|Grupo: "+x.getGrupo()+"|Pocisao no Grupo: "+x.getPosicaoGrupo()+"|Tecnico: Sem Tecnico|");
-								else
-									System.out.println("|Id: "+x.getId()+"|Nome: "+x.getNome()+"|Grupo: "+x.getGrupo()+"|Pocisao no Grupo: "+x.getPosicaoGrupo()+"|Tecnico: "+x.getTecnico().getNome()+"|");
-								
-							}
+							System.out.println(selecaocontroller.listarSelecao());
 							break;
 						}
 						case(3):{
@@ -180,45 +155,36 @@ public class menu {
 						case(2):{
 							System.out.println("Digite o id da selecao a qual serao listadas seus jogadores: ");
 							id = Integer.parseInt(input.nextLine()); 
-							for (Jogador x:selecaocontroller.listarJogador(id)) {
-								System.out.println("|Id: " +x.getId()+"|Nome: "+x.getNome()+"|Idade: "+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Altura: "+ x.getAltura()+"|Titular: "+x.isTitular()+"|Posicao: "+ x.getPosicao()+"|Quantidade de gols: "+x.getQuantGols()+"|Cartao amarelo: "+x.getCartaoAmarelo()+"|Cartao vermelho: "+x.getCartaoVermelho()+"|Numero da camisa: " +x.getCamisa());
-							}
+							System.out.println(jogadorcontroller.listarJogador(id));
 							break;
 								}
 						case(3):{
 							System.out.println("Digite o id do jogador a ser alterado: ");
 							id = Integer.parseInt(input.nextLine());
-							for(Selecao x: selecaocontroller.listarSelecao()) {
-								for(Jogador y: x.getJogadores()) {
-									if(y.getId()==id) {
-										System.out.println("Escolha o que deseja editar:\n1 - Nome\n2 - Altura\n3 - Idade\n4 - Nacionalidade\n5 - Cartao Amarelo\n6 - Cartao Vermelho\n7 - Qauntidade de gols\n8 - Titular\n9 - Posicao\n10 - Nº da camisa\n");
-										opcao = Integer.parseInt(input.nextLine());
-										if(opcao == 9) {
-											System.out.println("Escolha a posicao:\n0 - Goleiro \n1 - Lateral Direito \n2 - Lateral Esquerdo\n3 - Zagueiro Central\n4 - Quarto Zagueiro\n5 - Volante \n6 - Ponta Direita \n7 - Segundo Volante \n8 - Atacante \n9 -Meia Armador \n10 - Ponta Esquerda\n11 - Ponta Direita");
-										}
-										if(opcao == 8) {
-											System.out.println("O jogador é titular: (Digite s se sim)");
-										}
-										dado = input.nextLine();
-										jogadorcontroller.editarJogador(x, id, opcao, dado);
-										break;
-									}
-									
-								}
+							System.out.println("Escolha o que deseja editar:\n1 - Nome\n2 - Altura\n3 - Idade\n4 - Nacionalidade\n5 - Cartao Amarelo\n6 - Cartao Vermelho\n7 - Qauntidade de gols\n8 - Titular\n9 - Posicao\n10 - Nº da camisa\n");
+							opcao = Integer.parseInt(input.nextLine());
+							if(opcao == 9) {
+								System.out.println("Escolha a posicao:\n0 - Goleiro \n1 - Lateral Direito \n2 - Lateral Esquerdo\n3 - Zagueiro Central\n4 - Quarto Zagueiro\n5 - Volante \n6 - Ponta Direita \n7 - Segundo Volante \n8 - Atacante \n9 -Meia Armador \n10 - Ponta Esquerda\n11 - Ponta Direita");
 							}
+							if(opcao == 8) {
+								System.out.println("O jogador é titular: (Digite s se sim)");
+							}
+							dado = input.nextLine();
+							jogadorcontroller.editarJogador(id, opcao, dado);
 							break;
-						}
+								}
 						case(4):{
 							System.out.println("Digite o id da selecao que sera excluido o jogador");
 							auxiliar = Integer.parseInt(input.nextLine());
 							System.out.println("Digite o id do jogador a ser excluido: ");
 							id = Integer.parseInt(input.nextLine());
-							selecaocontroller.excluirJogador(auxiliar, id);
+							jogadorcontroller.excluirJogador(auxiliar, id);
 							break;
 						}
 					}
 				break;
 				}
+				
 			
 			case(4):{
 				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir");
@@ -240,9 +206,7 @@ public class menu {
 							
 						}
 						case(2):{
-							for(Tecnico x :tecnicocontroller.listarTecnico(selecaocontroller.listarSelecao())) {
-								System.out.println("|Nome: "+x.getNome()+"|Idade: "+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Time anterior: "+x.getTimeAnterior());
-							}
+							System.out.println(tecnicocontroller.listarTecnico());
 							break;
 						}
 						case(3):{
@@ -270,4 +234,7 @@ public class menu {
 		}
 	}
 }
+		
+	
+
 	

@@ -1,29 +1,31 @@
 package controller;
 
-import java.util.List;
 
 import model.Arbitro;
-import model.ArbitroDAO;
-import model.ArbitroImplDao;
+
 
 
 public class ArbitroController {
-	ArbitroDAO arbitrodao = new ArbitroImplDao();
+	Singleton menu = new Singleton();
 	
 	public void inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {
-		arbitrodao.inserirArbitro(nome, idade, nacionalidade, tipoArb);
+		menu.getArbitrodao().inserirArbitro(nome, idade, nacionalidade, tipoArb);
 	}
 	
 	public void editarArbitro(int id, int num, String dado) {
-		arbitrodao.editarArbitro(id, num, dado);
+		menu.getArbitrodao().editarArbitro(id, num, dado);
 	}
 	
 	public void excluirArbitro(int id) {
-		arbitrodao.excluirArbitro(id);
+		menu.getArbitrodao().excluirArbitro(id);
 	}
 	
-	public List<Arbitro> listarArbitros(){
-		return arbitrodao.listarArbitros();
+	public String listarArbitros(){
+		String s ="";
+		for(Arbitro x: menu.getArbitrodao().listarArbitros()) {
+			s = s+("|Id: " + x.getId() + "|Nome: " + x.getNome() + "|Idade: " + x.getIdade()+ "|Nacionalidade: " + x.getNacionalidade()+ "|Tipo: " + x.getTipoArb() + "|\n");
+			}
+		return s;
 		
 	}
 

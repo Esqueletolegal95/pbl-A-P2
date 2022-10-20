@@ -1,6 +1,5 @@
 package model;
 
-import java.util.List;
 
 public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 	protected int idJog= 30000; //Valor será incrementado para gerar o id

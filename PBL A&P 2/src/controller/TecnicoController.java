@@ -1,28 +1,30 @@
 package controller;
 
-import java.util.List;
 
 import model.Selecao;
 import model.Tecnico;
-import model.TecnicoDAO;
-import model.TecnicoImplDao;
+
 
 public class TecnicoController {
-	TecnicoDAO tecnicodao = new TecnicoImplDao();
+	Singleton menu = new Singleton();
 	
 	public void inserirTecnico(Selecao selecao,String nome, int idade, String nacionalidade, String time) {
-		tecnicodao.inserirTecnico(selecao, nome, idade, nacionalidade, time);
+		menu.getTecnicodao().inserirTecnico(selecao, nome, idade, nacionalidade, time);
 	}
 	
 	public void editarTecnico(Selecao selecao,int num, String dado) {
-		tecnicodao.editarTecnico(selecao, num, dado);
+		menu.getTecnicodao().editarTecnico(selecao, num, dado);
 	}
 	public void excluirTecnico(Selecao selecao) {
-		tecnicodao.excluirTecnico(selecao);
+		menu.getTecnicodao().excluirTecnico(selecao);
 	}
 
-	public List<Tecnico> listarTecnico(List<Selecao> selecoes) {
-		return tecnicodao.listarTecnico(selecoes);
+	public String listarTecnico() {
+		String s = "";
+		for(Tecnico x :menu.getTecnicodao().listarTecnico(menu.getSelecaodao().listarSelecao())) {
+			s = s + ("|Nome: "+x.getNome()+"|Idade: "+x.getIdade()+"|Nacionalidade: "+x.getNacionalidade()+"|Time anterior: "+x.getTimeAnterior()+"\n");
+		}
+		return s;
 	}
 	
 }
