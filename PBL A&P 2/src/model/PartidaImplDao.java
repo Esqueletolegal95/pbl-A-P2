@@ -12,12 +12,12 @@ public class PartidaImplDao extends EntidadeImplDao implements PartidaDAO {
 	
 
 	@Override
-	public Partida inserirPartida(Date data, int horario, String local, Selecao time1, Selecao time2, int golsTime1, 
+	public Partida inserirPartida(Date data, int horario, String local, int idTime1, int idTime2, int golsTime1, 
 			int golsTime2) {//Insere partida
 		if (partidas.size() >=48) {
 			System.out.println("Excedido número máximo de partidas");}
 		else {
-			Partida partida = new Partida(data, horario, local, time1, time2, golsTime1, golsTime2);
+			Partida partida = new Partida(data, horario, local, idTime1, idTime2, golsTime1, golsTime2);
 			
 			partidas.add(partida);
 			partida.setId(idPart);
@@ -58,7 +58,13 @@ public class PartidaImplDao extends EntidadeImplDao implements PartidaDAO {
 				case(5):
 					x.setGolsTime2(Integer.parseInt(dado));
 				break;
-				//não poderá editar as seleções que estão na partida
+				case(6):
+					x.setGolsTime1(Integer.parseInt(dado));
+				break;
+				case(7):
+					x.setGolsTime2(Integer.parseInt(dado));
+				break;
+				
 			}
 		}
 		
@@ -73,15 +79,49 @@ public class PartidaImplDao extends EntidadeImplDao implements PartidaDAO {
 		}
 		
 	}
-
+	
 	@Override
-	public List<Partida> listarPartida() {//Retorna todas as seleções da lista
+	public Integer excluirIdSelecao(Partida partida, Integer id) {
+		
+		
+		/*for(Integer x: partida.getSelecoes()) {
+			if(x==id) {
+				partidas.get(x).getSelecoes().remove(x);
+				
+			}
+		}*/
+		
+		for (int i = 0; i < partidas.size(); i++) {
+			if(id == partidas.get(i).getId()) {
+				if(partida.getTime1()==id) {
+					partida.setTime1(99999);	
+				}
+				else {
+					partida.setTime2(99999);
+					
+				}
+				partidas.get(i).getSelecoes().remove(i);
+				
+			
+			
+			}
+		}
+	
+		
+		
+		return null;
+	}
+
+
+ 
+ @Override
+	public List<Partida> listarPartida() {//Retorna as partidas da lista
 		return partidas;
 		
 	}
 
 	@Override
-	public Partida retornaPartida(int id) {//Retorna a selecao escolhida
+	public Partida retornaPartida(int id) {//Retorna a partida escolhida
 		for(Partida x : partidas) {
 			if (x.getId() == id)
 				return x;
