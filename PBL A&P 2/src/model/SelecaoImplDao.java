@@ -45,12 +45,14 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	}
 
 	@Override
-	public void excluirSelecao(int id) {//Exclui seleção na lista
+	public Selecao excluirSelecao(int id) {//Exclui seleção na lista
 		for(Selecao x : selecoes) {
-			if (x.getId() == id)
+			if (x.getId() == id) {
 				selecoes.remove(x);
+				return x;
+				}
 		}
-		
+		return null;
 	}
 
 	@Override

@@ -20,9 +20,9 @@ class JogadordaoTest {
 	
 	@BeforeEach
 	public void antes() {
-	JogadorDao jogadordao = new JogadorImplsDao();
-	Selecao selecao = new Selecao("nome");
-	Jogador jogador = new Jogador();
+	jogadordao = new JogadorImplsDao();
+	selecao = new Selecao("nome");
+	jogador = new Jogador();
 	}
 	
 	@Test

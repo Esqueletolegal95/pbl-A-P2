@@ -12,7 +12,6 @@ do código, e estou ciente que estes trechos não serão considerados para fins 
 package view;
 
 import java.util.Scanner;
-import model.*;
 import controller.*;
 
 
@@ -79,7 +78,7 @@ public class menu {
 						case(4):{
 							System.out.println("Digite o id do Arbitro a ser excluido:");
 							id = Integer.parseInt(input.nextLine());
-								arbitrocontroller.excluirArbitro(id);
+							arbitrocontroller.excluirArbitro(id);
 							}
 							break;
 						}

@@ -12,7 +12,7 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	
 
 	 @Override
-	public void inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {//Insere Arbitro na lista
+	public Arbitro inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {//Insere Arbitro na lista
 		Arbitro arbitro = new Arbitro();
 		arbitro.setNome(nome);
 		arbitro.setIdade(idade);
@@ -20,7 +20,8 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 		arbitro.setTipoArb(tipos[tipoArb]);
 		arbitro.setId(idArb);
 		idArb++;
-		arbitros.add(arbitro);		
+		arbitros.add(arbitro);
+		return arbitro;		
 	}
 	 
 	 
@@ -50,12 +51,14 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	
 	
 	@Override
-	public void excluirArbitro(int id) {//Exclui Arbitro na lista
+	public Arbitro excluirArbitro(int id) {//Exclui Arbitro na lista
 		for(Arbitro x	: arbitros) {
 			if(x.getId() == id) {
 				arbitros.remove(x);
+				return x;
 				}
 			}
+		return null;
 		}
 	
 	

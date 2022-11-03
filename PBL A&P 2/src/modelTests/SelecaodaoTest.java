@@ -1,22 +1,21 @@
 package modelTests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import model.SelecaoImplDao;
 import model.Selecao;
 import model.SelecaoDAO;
-import org.junit.jupiter.api.Test;
+import model.SelecaoImplDao;
 
 class SelecaodaoTest {
 	SelecaoDAO selecaodao = new SelecaoImplDao();
 	Selecao selecao = new Selecao(null);
 	@BeforeEach
 	void antes() {
-		SelecaoDAO selecaodao = new SelecaoImplDao();
-		Selecao selecao = new Selecao(null);
+		 selecaodao = new SelecaoImplDao();
+		 selecao = new Selecao(null);
 	}
 	@Test
 	void testeInsercaodeSelecoes() {
@@ -55,4 +54,12 @@ class SelecaodaoTest {
 		assertEquals("Testando edicao da pocisao do gurpo da selecao", 2, selecao.getPosicaoGrupo());
 		
 	}
+	
+	@Test
+	void testeExcluirSelecao() {
+		selecao = selecaodao.inserirSelecao(null, null, 0);
+		assertEquals("Testando exclusão da selecao", selecao, selecaodao.excluirSelecao(40000));
+	}
 }
+
+	
