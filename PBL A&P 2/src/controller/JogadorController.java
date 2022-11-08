@@ -1,14 +1,22 @@
 package controller;
 
 
+import model.Entidade;
 import model.Jogador;
 import model.Selecao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import controller.PesquisaController;
 
 
 public class JogadorController {
 	Singleton menu = new Singleton();
+	PesquisaController pesquisa = new PesquisaController();
 	
 	public void inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) {
+		
 		menu.getJogadordao().inserirJogador(selecao, nome, idade, altura, titular, nacio, posicao, camisa);
 	}
 	
@@ -40,6 +48,17 @@ public class JogadorController {
 				return;
 			}
 		}
+	}
+	public void pesquisarJogador(String nome) {
+		List<Jogador> lista = new ArrayList<Jogador>();
+		for(Selecao selecao: menu.getSelecaodao().listarSelecao()) {
+			for(Jogador jogador: selecao.getJogadores()) {
+				if(jogador.getNome().equalsIgnoreCase(nome)) {
+				lista.add(jogador);	}		
+				
+			}
+		}
+			
 	}
 
 }
