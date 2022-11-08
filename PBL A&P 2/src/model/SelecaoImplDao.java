@@ -24,6 +24,48 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 		}
 		return null;
 	}
+	
+	@Override
+    public int inserirSelGrupo(Grupo grupo, int idSele) {
+
+
+
+        if(grupo.getSelecoes().size() >= 4) 
+        System.out.println("Grupo já está completo com 4 selecoes");
+        else {
+        grupo.getSelecoes().add(idSele);
+        return grupo.getSelecoes().size();
+        }
+        return 9999;
+
+
+
+
+
+
+
+    }
+	
+	@Override
+	public int excluirSelGrupo(Grupo grupo, int idSele) {
+
+
+
+	        if(grupo.getSelecoes().size() == 0) 
+	        System.out.println("Grupo está vazio");
+	        else {
+	        grupo.getSelecoes().remove(idSele);
+	        return grupo.getSelecoes().size();
+	        }
+	        return 9999;
+
+
+
+
+
+
+
+	    }
 
 	@Override
 	public void editarSelecao(int id,int num, String dado) {//Edita seleção na lista
@@ -69,6 +111,20 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 		}
 		return null;
 		}
+	@Override
+	public List<Selecao> IdsParaSelecoes(List<Integer> IdsSelecoes){
+        List<Selecao> selecoesret = new ArrayList<Selecao>();
+        Selecao selecao;
+
+            for (Integer x : IdsSelecoes){
+
+            selecao = retornaSelecao(x);
+            if (selecao != null) {
+                selecoesret.add(selecao);
+            }
+        }
+        return selecoesret;
+    }
 	}
 	
 

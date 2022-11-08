@@ -30,8 +30,8 @@ public class menu {
 		JogadorController jogadorcontroller = new JogadorController();
 		SelecaoController selecaocontroller = new SelecaoController();
 		TecnicoController tecnicocontroller = new TecnicoController();
-	
-		
+		GrupoController grupocontroller = new GrupoController();
+		PartidaController partidacontroller = new PartidaController();
 
 		
 		while(menu){// menu
@@ -39,7 +39,7 @@ public class menu {
 			opcao = Integer.parseInt(input.nextLine());
 			switch(opcao) {
 			case(1):{
-				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir");
+				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir\n5 - Voltar");
 				opcao = Integer.parseInt(input.nextLine());
 					switch (opcao) {
 						case(1):{
@@ -79,7 +79,9 @@ public class menu {
 							System.out.println("Digite o id do Arbitro a ser excluido:");
 							id = Integer.parseInt(input.nextLine());
 							arbitrocontroller.excluirArbitro(id);
-							}
+							break;
+						}
+						case(5):
 							break;
 						}
 					}	

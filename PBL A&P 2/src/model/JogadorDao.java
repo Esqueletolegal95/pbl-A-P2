@@ -5,4 +5,5 @@ public interface JogadorDao{
 	abstract void editarJogador(Selecao selecao, int id, int num, String dado);
 	abstract Jogador excluirJogador(Selecao selecao, int id);
 	abstract Jogador retornaJogador(Selecao selecao, int id);
+	
 }

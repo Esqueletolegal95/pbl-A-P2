@@ -7,7 +7,7 @@ import model.Entidade;
 
 public class PesquisaController {
 	
-	public List<Entidade> Pesquisa(String s, List<Entidade> entidades) {
+	public List<Entidade> pesquisa(String s, List<Entidade> entidades) {
 		List<Entidade> lista = new ArrayList <Entidade>();
 		for(Entidade entidade:entidades ) {
 			for(String string: entidade.getNome().split(" ")) {

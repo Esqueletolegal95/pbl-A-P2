@@ -48,10 +48,10 @@ class SelecaodaoTest {
 	}
 	
 	@Test
-	void testeEditarPocisaoGrupoDeSelecao() {
+	void testeEditarPosicaoGrupoDeSelecao() {
 		selecao  = selecaodao.inserirSelecao(null, null, 0);
 		selecaodao.editarSelecao(0, 3, "2");
-		assertEquals("Testando edicao da pocisao do gurpo da selecao", 2, selecao.getPosicaoGrupo());
+		assertEquals("Testando edicao da posicao do grupo da selecao", 2, selecao.getPosicaoGrupo());
 		
 	}
 	
