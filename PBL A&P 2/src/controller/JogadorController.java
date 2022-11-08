@@ -51,15 +51,21 @@ public class JogadorController {
 	}
 	public void pesquisarJogador(String nome) {
 		List<Jogador> lista = new ArrayList<Jogador>();
+				;
 		for(Selecao selecao: menu.getSelecaodao().listarSelecao()) {
-			for(Jogador jogador: selecao.getJogadores()) {
-				if(jogador.getNome().equalsIgnoreCase(nome)) {
-				lista.add(jogador);	}		
-				
-			}
-		}
 			
-	}
-
+			for(Jogador jogador: selecao.getJogadores()) { 
+				
+				for(String string: jogador.getNome().split(" ")) {
+					
+					if(nome.equals(string)) {
+			        lista.add(jogador);	
+			        
+				}
+			  }					
+		    }
+		  }			 
+	    }	
+	
 }
 
