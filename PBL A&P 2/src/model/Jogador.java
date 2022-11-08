@@ -1,13 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Jogador extends Pessoa{
 	private String posicao;
 	private int cartaoAmarelo;
 	private int cartaoVermelho;
-	private int quantGols;	
+	private int quantGols;
 	private boolean titular;
 	private double altura;
 	private int camisa;
@@ -67,13 +64,5 @@ public class Jogador extends Pessoa{
 	public void setCamisa(int camisa) {
 		this.camisa = camisa;
 	}
-
-	/*public List<Integer> getIdPartidas() {
-		return idPartidas;
-	}
-
-	public void setIdPartidas(List<Integer> idPartidas) {
-		this.idPartidas = idPartidas;
-	}*/
 	
 }

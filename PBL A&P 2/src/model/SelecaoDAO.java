@@ -8,8 +8,5 @@ public interface SelecaoDAO extends EntidadeDAO{
 	abstract Selecao excluirSelecao(int id);
 	abstract List<Selecao> listarSelecao();
 	abstract Selecao retornaSelecao(int id);
-	abstract List<Selecao> IdsParaSelecoes(List<Integer> IdsSelecoes);
-	abstract int inserirSelGrupo(Grupo grupo, int idSele);
-	abstract int excluirSelGrupo(Grupo grupo, int idSele);
 
 }

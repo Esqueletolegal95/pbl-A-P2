@@ -6,10 +6,10 @@ import java.util.Date;
 public class Partida extends Entidade {
 	
 	private Date data;
-	private Date horario;
+	private int horario;
 	private String local;
-	private int time1;
-	private int time2;
+	private Selecao time1;
+	private Selecao time2;
 	private int golsTime1;
 	private int golsTime2;
 	
@@ -17,10 +17,10 @@ public class Partida extends Entidade {
 	
 	
 	
-	public Partida(Date data2, Date horario2, String local2, int time1, int time2, int golsTime1,
+	public Partida(Date data2, int horario2, String local2, Selecao time1, Selecao time2, int golsTime1,
 			int golsTime2) {
-		this.setData(data2);		
-		this.setLocal(local2);
+		this.setData(data);		
+		this.setLocal(local);
 		this.setTime1(time1);
 		this.setTime2(time2);
 		this.setGolsTime1(golsTime1);
@@ -32,10 +32,10 @@ public class Partida extends Entidade {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public Date getHorario() {
+	public int getHorario() {
 		return horario;
 	}
-	public void setHorario(Date horario) {
+	public void setHorario(int horario) {
 		this.horario = horario;
 	}
 	public String getLocal() {
@@ -44,16 +44,16 @@ public class Partida extends Entidade {
 	public void setLocal(String local) {
 		this.local = local;
 	}
-	public int getTime1() {
+	public Selecao getTime1() {
 		return time1;
 	}
-	public void setTime1(int time1) {
+	public void setTime1(Selecao time1) {
 		this.time1 = time1;
 	}
-	public int getTime2() {
+	public Selecao getTime2() {
 		return time2;
 	}
-	public void setTime2(int time2) {
+	public void setTime2(Selecao time2) {
 		this.time2 = time2;
 	}
 	public int getGolsTime1() {

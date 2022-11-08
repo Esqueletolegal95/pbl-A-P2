@@ -1,8 +1,7 @@
 package model;
 
-
+import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +12,7 @@ public class PartidaImplDao extends EntidadeImplDao implements PartidaDAO {
 	
 
 	@Override
-	public Partida inserirPartida(Date data, Date horario, String local, int time1, int time2, int golsTime1, 
+	public Partida inserirPartida(Date data, int horario, String local, Selecao time1, Selecao time2, int golsTime1, 
 			int golsTime2) {//Insere partida
 		if (partidas.size() >=48) {
 			System.out.println("Excedido número máximo de partidas");}
@@ -36,48 +35,30 @@ public class PartidaImplDao extends EntidadeImplDao implements PartidaDAO {
 		for(Partida x : partidas) {
 			switch(num) {
 				case(1):
-				
-				SimpleDateFormat dataformato = new SimpleDateFormat("dd/MM/yyyy");
-               // SimpleDateFormat horaformato = new SimpleDateFormat("HH:mm");
-                Date data=null;
-                try {
-                    data = dataformato.parse(dado);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                				
-			    
+					
+			    DateFormat dataformato=DateFormat.getInstance();
+				Date data=null;
+				try {
+					data = dataformato.parse(dado);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				} 
 		
 					x.setData(data);
 				break;
 				case(2):
-					SimpleDateFormat horaformato = new SimpleDateFormat("HH:mm");
-	                Date hora=null;
-	                try {
-	                    hora = horaformato.parse(dado);
-	                } catch (ParseException e) {
-	                    e.printStackTrace();
-	                }
-					
-					
-					
-					x.setHorario(hora);		
+					x.setHorario(Integer.parseInt(dado));		
 				break;
 				case(3):
 					x.setLocal(dado);
 				break;
 				case(4):
-					x.setTime1(Integer.parseInt(dado));
-				break;
-				case(5):
-					x.setTime2(Integer.parseInt(dado));
-				case(6):
 					x.setGolsTime1(Integer.parseInt(dado));
 				break;
-				case(7):
+				case(5):
 					x.setGolsTime2(Integer.parseInt(dado));
 				break;
-				
+				//não poderá editar as seleções que estão na partida
 			}
 		}
 		
@@ -107,16 +88,6 @@ public class PartidaImplDao extends EntidadeImplDao implements PartidaDAO {
 		}
 		return null;
 		}
-
-	@Override
-	public Integer excluirIdSelecao(Partida partida, Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-
 	}
 	
 
