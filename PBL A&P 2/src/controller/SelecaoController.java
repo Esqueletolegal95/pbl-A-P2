@@ -8,7 +8,10 @@ public class SelecaoController {
 	Singleton menu = new Singleton();
 	
 	public void inserirSelecao(String grupo, String nome, int posicaoGrupo) {
-		menu.getSelecaodao().inserirSelecao(grupo, nome, posicaoGrupo);
+		Selecao selecao = menu.getSelecaodao().inserirSelecao(grupo, nome, posicaoGrupo);
+		int idgrupo = menu.getGrupodao().retornaIdGrupo(grupo);
+		
+		menu.getSelecaodao().inserirSelGrupo(menu.getGrupodao().retornaGrupo(idgrupo), selecao.getId());
 	}
 	
 	public void editarSelecao(int id,int num, String dado) {
