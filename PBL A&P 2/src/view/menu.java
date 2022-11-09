@@ -35,7 +35,7 @@ public class menu {
 
 		
 		while(menu){// menu
-			System.out.println("Escolha uma das opcoes:\n1 - Arbitro\n2 - Selecao\n3 - Jogador\n4 - Tecnico\n5 - Grupo\n6 - Partida\n7 - Pesquisa\n8 - Sair");
+			System.out.println("Escolha uma das opcoes:\n1 - Arbitro\n2 - Selecao\n3 - Jogador\n4 - Tecnico\n5 - Grupo\n6 - partida\n7 - Sair");
 			opcao = Integer.parseInt(input.nextLine());
 			switch(opcao) {
 			case(1):{
@@ -89,7 +89,7 @@ public class menu {
 				
 			
 			case(2):{
-				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir\n5 - Voltar");
+				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir");
 				opcao = Integer.parseInt(input.nextLine());
 					switch(opcao) {
 						case(1):{
@@ -122,13 +122,11 @@ public class menu {
 							selecaocontroller.excluirSelecao(id);
 							break;
 						}
-						case(5):
-							break;
 					}
 					break;
 				}
 			case(3):{
-				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir\n5 - Voltar");
+				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir");
 				opcao = Integer.parseInt(input.nextLine());
 					switch(opcao) {
 						case(1):{
@@ -184,16 +182,13 @@ public class menu {
 							jogadorcontroller.excluirJogador(auxiliar, id);
 							break;
 						}
-						case(5):{
-							break;
-							}
 					}
 				break;
 				}
 				
 			
 			case(4):{
-				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir\n5 - Voltar");
+				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir");
 				opcao = Integer.parseInt(input.nextLine());
 					switch(opcao) {
 						case(1):{
@@ -230,59 +225,30 @@ public class menu {
 							tecnicocontroller.excluirTecnico(selecaocontroller.retornaSelecao(id));
 							break;
 						}
-						case(5):
-							break;
 						
 					}
 				break;
 				}
-			case(5):/*{
-				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir\n5 - Voltar");
+			case(5):{
+				System.out.println("Escolha a opcao 2 para listar:\n2 - Listar");
+				
+				
 				opcao = Integer.parseInt(input.nextLine());
-					switch(opcao) {
-						case(1):{
-							System.out.println("Digite o id da selecao onde sera adicionado o tecnico: ");
-							id = Integer.parseInt(input.nextLine());
-							System.out.println("Digite o nome: ");
-							nome = input.nextLine();
-							System.out.println("Digite a idade: ");
-							idade = Integer.parseInt(input.nextLine());
-							System.out.println("Digite a nacionalidade: ");
-							nacionalidade = input.nextLine();
-							System.out.println("Digite o nome do time anterior do tecnico: ");
-							time = input.nextLine();
-							tecnicocontroller.inserirTecnico(selecaocontroller.retornaSelecao(id), nome, idade, nacionalidade, time);
-							break;
-							
-						}
-						case(2):{
-							System.out.println(tecnicocontroller.listarTecnico());
-							break;
-						}
-						case(3):{
-							System.out.println("Digite o id selecao a qual o tecnico pertence: ");
-							id = Integer.parseInt(input.nextLine());
-							System.out.println("Digite qual opcao voce deseja:\n1 - nome\n2 - Idade: \n3 - Nacionalidade\n4 - Time Anterior");
-							opcao = Integer.parseInt(input.nextLine());
-							dado = input.nextLine();
-							tecnicocontroller.editarTecnico(selecaocontroller.retornaSelecao(id), opcao, dado);
-							break;
-						}
-						case(4):{
-							System.out.println("Digite o id da selecao onde sera excluido o tecnico: ");
-							id = Integer.parseInt(input.nextLine());
-							tecnicocontroller.excluirTecnico(selecaocontroller.retornaSelecao(id));
-							break;
-						}
-						case(5):
-							break;
+					
+						if(opcao==2) {
 						
-					}
-				}*/
+							System.out.println(grupocontroller.listarGrupo());
+						
+						}
+				break;
+				}
+			case(6):
+				menu = false;
 			}
 		}
 	}
-}		
+}
+		
 	
 
 	
