@@ -9,15 +9,17 @@ import model.Selecao;
 //import model.SelecaoImplDao;
 import model.Grupo;
 import model.GrupoDao;
-
+//import model.GrupoImplDao;
+//import model.Jogador;
 
 public class GrupoController {
-
+	//GrupoDao grupodao = new GrupoImplDao();
+	//SelecaoDAO selecaodao = new SelecaoImplDao();
 	Singleton menu = new Singleton();
 	
 	public void criarGrupo(String nome) {
 		menu.getGrupodao().criarGrupo(nome);
-		
+		//grupodao.criarGrupo(nome);
 	}
 	
 	
@@ -25,11 +27,16 @@ public class GrupoController {
 	public void excluirGrupo(int id) {
 		menu.getGrupodao().excluirGrupo(id);
 		
-		
+		//grupodao.excluirGrupo(id);
 	}
 	
 	public String listarGrupo(){
-			
+		//return menu.getGrupodao().listarGrupo();
+		
+		
+		
+		
+		
 		
 		 
 		String s= "";
@@ -48,7 +55,7 @@ public class GrupoController {
 		return s;
 	
 		
-				
+				//grupodao.listarGrupo();
 	}
 	
 	public GrupoDao getGrupodao(){
@@ -79,12 +86,11 @@ public class GrupoController {
 			if(grupo.getId()== idgrupo) {
 				for(Integer Time : grupo.getSelecoes()) {
 					if(Time==id) {
-						menu.getGrupodao().retornaGrupo(id).getSelecoes().remove(id);
-						
+						menu.getGrupodao().retornaGrupo(id).getSelecoes().remove(id);	
 					}				
+				}
 			}
 		}
-	}
 	}
 		
 

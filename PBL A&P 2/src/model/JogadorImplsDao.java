@@ -7,7 +7,12 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 "Volante", "Ponta Direita", "Segundo Volante", "Atacante", "Meia Armador" , "Ponta Esquerda", "Ponta Direita"}; //Lista com as posicoes que poderão ser escolhidas
 
 	@Override
-	public Jogador inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) { //Insere o jogador no atributo de Selecao
+	public Jogador inserirJogador(Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa) { 
+		/**
+		  * Insere um jogador da lista de jogadores de deteminada selecao
+		  * Entradas: Selecao selecao, String nome, int idade, double altura, boolean titular, String nacio, int posicao, int camisa
+		  * retono: Jogador
+		  */
 		if(selecao.getJogadores().size() >= 26) //Garante que a selecao não terá mais que 26 jogadores
 			System.out.println("A selecao está cheia");
 			else {
@@ -30,7 +35,12 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 	}
 
 	@Override
-	public void editarJogador(Selecao selecao, int id, int num, String dado) {//Edita o jogador no atributo de Selecao
+	public void editarJogador(Selecao selecao, int id, int num, String dado) {
+		/**
+		  * Edita um jogador da lista de jogadores de deteminada selecao
+		  * Entradas: Selecao selecao, int id, int num, String dado
+		  * retono: void
+		  */
 		for(Jogador x: selecao.getJogadores()) {
 			if (x.getId()==id) {
 				switch(num) {
@@ -73,6 +83,11 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 
 	@Override
 	public Jogador excluirJogador(Selecao selecao, int id) {
+		/**
+		  * Exlui um jogador da lista de jogadores de deteminada selecao
+		  * Entradas: Selecao selecao, int id
+		  * retono: Jogador
+		  */
 		for(Jogador jogador: selecao.getJogadores()) {
 			if(jogador.getId()==id) {
 				selecao.getJogadores().remove(jogador);
@@ -84,6 +99,11 @@ public class JogadorImplsDao extends PessoaImplDao implements JogadorDao {
 
 	@Override
 	public Jogador retornaJogador(Selecao selecao, int id) {
+		/**
+		  * Retorna um jogador da lista de jogadores de deteminada selecao
+		  * Entradas: Selecao selecao, int id
+		  * retono: Jogador
+		  */
 		for(Jogador jogador: selecao.getJogadores()) {
 			if(jogador.getId()==id) {
 				return jogador;

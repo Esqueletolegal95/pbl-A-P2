@@ -13,6 +13,11 @@ public class TecnicoImplDao extends PessoaImplDao implements TecnicoDAO {
 
 	@Override
 	public void inserirTecnico(Selecao selecao,String nome, int idade, String nacionalidade, String time) {
+		/**
+		  * Insere o tecnico em determinada selecao
+		  * Entradas: Selecao selecao,String nome, int idade, String nacionalidade, String time
+		  * retono: void
+		  */
 		Tecnico tecnico = new Tecnico();
 		tecnico.setNome(nome);
 		tecnico.setIdade(idade);
@@ -26,6 +31,11 @@ public class TecnicoImplDao extends PessoaImplDao implements TecnicoDAO {
 
 	@Override
 	public void editarTecnico(Selecao selecao,int num, String dado) {
+		/**
+		  * Edita determinado dado de um tecnico de determinada selecao
+		  * Entradas: Selecao selecao,int num, String dado
+		  * retono: void
+		  */
 		
 			switch(num) {
 			case(1):{
@@ -45,11 +55,21 @@ public class TecnicoImplDao extends PessoaImplDao implements TecnicoDAO {
 
 	@Override
 	public void excluirTecnico(Selecao selecao) {
+		/**
+		  * exclui determinado tecnico de determinada selecao
+		  * Entradas: Selecao selecao
+		  * retono: void
+		  */
 		selecao.setTecnico(null);
 	}
 
 	@Override
 	public List<Tecnico> listarTecnico(List<Selecao> selecoes) {
+		/**
+		  * Retorna uma lista de tecnicos de todas as selecoes
+		  * Entradas: Selecao selecao
+		  * retono: List<Tecnico>
+		  */
 		List<Tecnico> tecnicos = new ArrayList<Tecnico>();
 		for(Selecao x : selecoes) {
 			if(x.getTecnico() != null) {

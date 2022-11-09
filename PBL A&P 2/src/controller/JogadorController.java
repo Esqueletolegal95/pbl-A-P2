@@ -8,8 +8,6 @@ import model.Selecao;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.PesquisaController;
-
 
 public class JogadorController {
 	Singleton menu = new Singleton();
@@ -50,22 +48,12 @@ public class JogadorController {
 		}
 	}
 	public void pesquisarJogador(String nome) {
-		List<Jogador> lista = new ArrayList<Jogador>();
-				;
+		List<Entidade> lista = new ArrayList<Entidade>();
 		for(Selecao selecao: menu.getSelecaodao().listarSelecao()) {
-			
-			for(Jogador jogador: selecao.getJogadores()) { 
-				
-				for(String string: jogador.getNome().split(" ")) {
-					
-					if(nome.equals(string)) {
-			        lista.add(jogador);	
-			        
-				}
-			  }					
-		    }
-		  }			 
-	    }	
-	
+			for(Jogador jogador: selecao.getJogadores()) {
+				lista.add(jogador);			}
+		}
+				pesquisa.pesquisa(nome, lista);
+	}
 }
 

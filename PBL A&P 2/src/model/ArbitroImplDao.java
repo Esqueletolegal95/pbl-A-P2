@@ -12,7 +12,12 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	
 
 	 @Override
-	public Arbitro inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {//Insere Arbitro na lista
+	public Arbitro inserirArbitro(String nome, int idade, String nacionalidade, int tipoArb) {
+		 /**
+		  * Insere Arbitro na lista
+		  * Parametros: String nome, int idade, String nacionalidade, int tipoArb
+		  * retono: Arbitro
+		  */
 		Arbitro arbitro = new Arbitro();
 		arbitro.setNome(nome);
 		arbitro.setIdade(idade);
@@ -26,7 +31,13 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	 
 	 
 	@Override
-	public void editarArbitro(int id, int num, String dado) {//Edita Arbitro na lista
+	public void editarArbitro(int id, int num, String dado) {
+
+		/**
+		  * Edita um Arbitro da lista
+		  * Entradas: int id, int num, String dado
+		  * retono: void
+		  */
 		for(Arbitro x	: arbitros) {
 			if(x.getId() == id) {
 				switch(num) {
@@ -51,7 +62,12 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	
 	
 	@Override
-	public Arbitro excluirArbitro(int id) {//Exclui Arbitro na lista
+	public Arbitro excluirArbitro(int id) {
+		/**
+		  * Exclui o Arbitro selecionado na lista
+		  * Parametros: int id
+		  * retono: Arbitro
+		  */
 		for(Arbitro x	: arbitros) {
 			if(x.getId() == id) {
 				arbitros.remove(x);
@@ -63,7 +79,12 @@ public class ArbitroImplDao extends PessoaImplDao implements ArbitroDAO{
 	
 	
 	@Override
-	public List<Arbitro> listarArbitros() {	//Retorna todos os arbitros
+	public List<Arbitro> listarArbitros() {	
+		/**
+		  * Insere Arbitro na lista
+		  * Parametros: int id
+		  * retono: Arbitro
+		  */
 		return arbitros;
 	}
 }

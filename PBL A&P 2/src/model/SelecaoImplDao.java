@@ -9,7 +9,12 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	
 
 	@Override
-	public Selecao inserirSelecao(String grupo, String nome, int posicaoGrupo) {//Insere seleção na lista
+	public Selecao inserirSelecao(String grupo, String nome, int posicaoGrupo) {
+		/**
+		  * insere uma Selecao na lista de selecoes
+		  * Entradas: String grupo, String nome, int posicaoGrupo
+		  * retono: Selecao
+		  */
 		if (selecoes.size() >=32)
 			System.out.println("A lista de selecoes está cheia (32 selecoes)");
 		else {
@@ -24,9 +29,62 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 		}
 		return null;
 	}
+	
+	@Override
+    public int inserirSelGrupo(Grupo grupo, int idSele) {
+
+
+
+        if(grupo.getSelecoes().size() >= 4) 
+        System.out.println("Grupo já está completo com 4 selecoes");
+        else {
+        grupo.getSelecoes().add(idSele);
+        return grupo.getSelecoes().size();
+        }
+        return 9999;
+
+
+
+
+
+
+
+    }
+	
+	@Override
+	public int excluirSelGrupo(Grupo grupo, int idSele) {
+		/**
+		  * Exclui uma Selecao na lista de grupos
+		  * Entradas: Grupo grupo, int idSele
+		  * retono: int
+		  */
+
+
+
+	        if(grupo.getSelecoes().size() == 0) 
+	        System.out.println("Grupo está vazio");
+	        else {
+	        grupo.getSelecoes().remove(idSele);
+	        return grupo.getSelecoes().size();
+	        }
+	        return 9999;
+
+
+
+
+
+
+
+	    }
 
 	@Override
-	public void editarSelecao(int id,int num, String dado) {//Edita seleção na lista
+	public void editarSelecao(int id,int num, String dado) {
+		/**
+		  * Edita uma Selecao na lista de selecoes
+		  * Entradas: int id,int num, String dado
+		  * retono: void
+		  */
+
 		for(Selecao x : selecoes) {
 			switch(num) {
 				case(1):
@@ -45,7 +103,13 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	}
 
 	@Override
-	public Selecao excluirSelecao(int id) {//Exclui seleção na lista
+	public Selecao excluirSelecao(int id) {
+		/**
+		  * Exclui uma Selecao na lista de selecoes
+		  * Entradas: int id
+		  * retono: Selecao
+		  */
+
 		for(Selecao x : selecoes) {
 			if (x.getId() == id) {
 				selecoes.remove(x);
@@ -56,19 +120,44 @@ public class SelecaoImplDao extends EntidadeImplDao implements SelecaoDAO {
 	}
 
 	@Override
-	public List<Selecao> listarSelecao() {//Retorna todas as seleções da lista
+	public List<Selecao> listarSelecao() {
+		/**
+		  * Retorna uma lista de selecoes
+		  * Entradas: int id
+		  * retono: List<Selecao>
+		  */
+
 		return selecoes;
 		
 	}
 
 	@Override
-	public Selecao retornaSelecao(int id) {//Retorna a selecao escolhida
+	public Selecao retornaSelecao(int id) {
+		/**
+		  * Retorna uma determinada selecao da lista de selecoes
+		  * Entradas: int id
+		  * retono: Selecao
+		  */
 		for(Selecao x : selecoes) {
 			if (x.getId() == id)
 				return x;
 		}
 		return null;
 		}
+	@Override
+	public List<Selecao> IdsParaSelecoes(List<Integer> IdsSelecoes){
+        List<Selecao> selecoesret = new ArrayList<Selecao>();
+        Selecao selecao;
+
+            for (Integer x : IdsSelecoes){
+
+            selecao = retornaSelecao(x);
+            if (selecao != null) {
+                selecoesret.add(selecao);
+            }
+        }
+        return selecoesret;
+    }
 	}
 	
 
