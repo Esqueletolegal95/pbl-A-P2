@@ -11,6 +11,7 @@ do código, e estou ciente que estes trechos não serão considerados para fins 
 
 package view;
 
+import java.util.Date;
 import java.util.Scanner;
 import controller.*;
 
@@ -242,6 +243,48 @@ public class menu {
 						}
 				break;
 				}
+			case(7):{
+
+				System.out.println("Escolha uma das opcoes:\n1 - Inserir\n2 - Listar\n3 - Editar\n4 - Excluir");
+				opcao = Integer.parseInt(input.nextLine());
+					switch(opcao) {
+						case(1):{
+							System.out.println("Digite a data:");
+							String data = input.nextLine();
+							System.out.println("Digite o horario:");
+							String horario = input.nextLine();
+							System.out.println("Digite o local:");
+							String local = input.nextLine();
+							System.out.println("Digite o ID selecao 1: ");
+							int idTime1 = Integer.parseInt(input.nextLine());
+							System.out.println("Digite o ID selecao 1: ");
+							int idTime2 = Integer.parseInt(input.nextLine());
+							System.out.println("Digite o ID selecao 1: ");
+							int golsTime1 = Integer.parseInt(input.nextLine());
+							System.out.println("Digite o ID selecao 1: ");
+							int golsTime2 = Integer.parseInt(input.nextLine());
+							
+							//partidacontroller.inserirPartida(data, horario, local, idTime1, idTime2, golsTime1, golsTime2);
+							
+							break;
+						}
+						case(2):{
+							System.out.println(partidacontroller.listarPartida());
+							break;
+						}
+						case(3):{
+							
+						}
+						case(4):{
+							
+						}
+					}
+					break;
+				
+				
+				
+				
+			}
 			case(6):
 				menu = false;
 			}
