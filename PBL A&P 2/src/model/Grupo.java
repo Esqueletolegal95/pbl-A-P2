@@ -18,11 +18,7 @@ public class Grupo extends Entidade {
 					
 	}
 	
-	public void addSelecoes(ArrayList<Integer> idSelecoes) {
-		this.idSelecoes = idSelecoes;
-		
 	
-		}
 	
 	public List<Integer> getSelecoes() {
 		return idSelecoes;
