@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="fundo" prefHeight="550.0" prefWidth="461.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="162.0" layoutY="32.0" mnemonicParsing="false" text="Inserir Jogador" />
+      <Button layoutX="164.0" layoutY="345.0" mnemonicParsing="false" text="Editar Jogador" />
+      <Button layoutX="162.0" layoutY="190.0" mnemonicParsing="false" text="Excluir Jogador" />
+      <Button layoutX="164.0" layoutY="476.0" mnemonicParsing="false" text="Listar Jogadores" />
+   </children>
+</AnchorPane>
